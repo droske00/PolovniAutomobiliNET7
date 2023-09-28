@@ -1,0 +1,20 @@
+﻿@page
+@model PolovniAutomobili.Pages.Automobili.ListModel
+@{
+}
+<h1>Automobili</h1>
+
+@Model.Message
+<table class="table"> <!--Normalno kreiranjue tabele uz pomoc HTML-a -->
+    @foreach(var car in Model.Cars) { <!--Karakter ET se navodi u kako bi rekli Razor stranici da koristimo tj. mogli da koristimo c# kod,
+                                       kada navodimo property Cars moramo da stavimo njegovu klasu ispred, kod njih ne navodi ET jer ga ima
+                                       na pocetku reda
+    -->
+    
+        <tr>
+            <td>@car.Id</td> <!--kod naziva promenljive stavljamo ET jer ga nema na pocetku reda, i kroz elemente tr i td definisemo table row odnosno column td -->
+            <td>@car.Description</td>
+            <td>@car.Gorivo</td>
+        </tr>
+    }
+</table>
