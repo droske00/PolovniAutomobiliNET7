@@ -4,17 +4,40 @@
 }
 <h1>Automobili</h1>
 
-@Model.Message
-<table class="table"> <!--Normalno kreiranjue tabele uz pomoc HTML-a -->
-    @foreach(var car in Model.Cars) { <!--Karakter ET se navodi u kako bi rekli Razor stranici da koristimo tj. mogli da koristimo c# kod,
-                                       kada navodimo property Cars moramo da stavimo njegovu klasu ispred, kod njih ne navodi ET jer ga ima
-                                       na pocetku reda
-    -->
-    
+<!--@Model.Message-->
+
+<form action="" method="get">
+    <!--Action u njemu se govori na koju URL adresu ce podaci da se posalju na server, method="get" koristimo kada se svi podaci koje saljemo salju preko URL-a->
+    <div class="form-group"> <!--Ovo su klase od Bootstrap za stilizaciju, koja se dodaje u _Layout.cshtml-->
+    <div class="input-group">
+        <input type="search" class="form-control" asp-for="SearchTerm" /><br> <!--Value="" atribut se koristi da zelimo da polje bude prazno kada se unese-->
+        <button class="btn btn-primary">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+    </div>
+</form>
+
+
+<table class="table">
+    <!--Normalno kreiranjue tabele uz pomoc HTML-a -->
+    @foreach (var car in Model.Cars)
+    {
+        <!--Karakter ET se navodi u kako bi rekli Razor stranici da koristimo tj. mogli da koristimo c# kod,
+                                           kada navodimo property Cars moramo da stavimo njegovu klasu ispred, kod njih ne navodi ET jer ga ima
+                                           na pocetku reda
+        -->
+
         <tr>
             <td>@car.Id</td> <!--kod naziva promenljive stavljamo ET jer ga nema na pocetku reda, i kroz elemente tr i td definisemo table row odnosno column td -->
             <td>@car.Description</td>
             <td>@car.Gorivo</td>
+            <!--href="/Automobili/Detail?carId=ETcar.Id-->
+            <td><a class="btn btn-lg" asp-page="./Detail" asp-route-carId="@car.Id">Detalji</a></td>
+            <td><a class="btn btn-lg" asp-page="./Edit" asp-route-carId="@car.Id">Izmeni</a></td>
         </tr>
     }
 </table>
+
+
+<a class="btn btn-primary" asp-page="./Edit">Add new car</a>

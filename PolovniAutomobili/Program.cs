@@ -1,4 +1,4 @@
-using PolovniAutomobili.Data;
+    using PolovniAutomobili.Data;
 
 namespace PolovniAutomobili
 {
@@ -9,7 +9,7 @@ namespace PolovniAutomobili
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddSingleton<IAutomobilData, InMemoryAutomobilData>(); //Mapiranje da podatke klase zameni sa podacima Interfejsa pogledati jos jednom i proguglati
+            builder.Services.AddSingleton<IAutomobilData, InMemoryAutomobilData>(); //Mapiranje da podatke klase zameni sa podacima Interfejsa pogledati jos jednom i proguglati.
             builder.Services.AddRazorPages();
 
             var app = builder.Build();
