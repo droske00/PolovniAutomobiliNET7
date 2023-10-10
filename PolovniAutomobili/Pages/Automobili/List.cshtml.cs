@@ -27,7 +27,7 @@ namespace PolovniAutomobili.Pages.Automobili
         public void OnGet() //Model Binding, name atribut iz inputa prosledjujemo kao ulazni parametar
         {
             Message = _configuration["Message"]; 
-            Cars = _automobilData.GetCarsByDescription(SearchTerm);
+            Cars = _automobilData.GetCarsByName(SearchTerm);
         }
     }
 }

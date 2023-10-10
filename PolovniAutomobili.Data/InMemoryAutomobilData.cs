@@ -11,10 +11,10 @@ namespace PolovniAutomobili.Data
         {
             _cars = new List<Automobil>()
            {
-               new Automobil() {Id = 1, Description = "Audi A3", Gorivo = Enums.GorivoVrsta.Benzin},
-               new Automobil() {Id = 2, Description = "Audi A4", Gorivo =  Enums.GorivoVrsta.Dizel},
-               new Automobil() {Id = 3, Description = "Audi Q5", Gorivo =  Enums.GorivoVrsta.Benzin},
-               new Automobil() {Id = 4, Description = "Audi Q6", Gorivo =  Enums.GorivoVrsta.Hibrid}
+               new Automobil() {Id = 1, Description = "Audi A3", Gorivo = Enums.GorivoVrsta.Benzin, Name = "Audi A3"},
+               new Automobil() {Id = 2, Description = "Audi A4", Gorivo =  Enums.GorivoVrsta.Dizel,  Name = "Audi A4"},
+               new Automobil() {Id = 3, Description = "Audi Q5", Gorivo =  Enums.GorivoVrsta.Benzin, Name = "Audi Q5"},
+               new Automobil() {Id = 4, Description = "Audi Q6", Gorivo =  Enums.GorivoVrsta.Hibrid, Name = "Audi Q6"}
            };
           
         }
@@ -26,16 +26,26 @@ namespace PolovniAutomobili.Data
             return newCar;
         }
 
+        public Automobil Delete(int id)
+        {
+            Automobil car = _cars.FirstOrDefault(c => c.Id == id);
+            if(car != null) 
+            {
+                _cars.Remove(car);
+            }
+            return car;
+        }
+
         public Automobil GetById(int id)
         {
             Automobil car = _cars.FirstOrDefault(c => c.Id == id);
             return car;
         }
 
-        public IEnumerable<Automobil> GetCarsByDescription(string description)
+        public IEnumerable<Automobil> GetCarsByName(string name)
         {
             var cars = from c in _cars
-                       where String.IsNullOrEmpty(description) || c.Description.ToLower().Contains(description.ToLower())
+                       where String.IsNullOrEmpty(name) || c.Description.ToLower().Contains(name.ToLower())
                        orderby c.Description
                        select c;
             return cars;

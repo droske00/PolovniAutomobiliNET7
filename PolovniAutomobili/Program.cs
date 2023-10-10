@@ -1,4 +1,5 @@
-    using PolovniAutomobili.Data;
+using Microsoft.EntityFrameworkCore;
+using PolovniAutomobili.Data;
 
 namespace PolovniAutomobili
 {
@@ -8,8 +9,15 @@ namespace PolovniAutomobili
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            //Definisemo koja SQL konekcija da se koristi i ka kom serveru.
+            builder.Services.AddDbContextPool<PolovniAutomobiliDbContext>(options =>
+                {
+                options.UseSqlServer(builder.Configuration["PolovniAutomobiliDbConn"]);
+                }
+            );
+
             // Add services to the container.
-            builder.Services.AddSingleton<IAutomobilData, InMemoryAutomobilData>(); //Mapiranje da podatke klase zameni sa podacima Interfejsa pogledati jos jednom i proguglati.
+            builder.Services.AddScoped<IAutomobilData, SqlCarData>(); //Mapiranje da podatke klase zameni sa podacima Interfejsa pogledati jos jednom i proguglati.
             builder.Services.AddRazorPages();
 
             var app = builder.Build();

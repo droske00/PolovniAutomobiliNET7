@@ -15,5 +15,8 @@ namespace PolovniAutomobili.Core
         public string Description { get; set; }
 
         public Enums.GorivoVrsta Gorivo { get; set; }
+
+        [StringLength(50)]
+        public string Name { get; set; }
     }
 }
