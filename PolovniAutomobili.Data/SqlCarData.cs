@@ -50,6 +50,11 @@ namespace PolovniAutomobili.Data
             return updateCar;
         }
 
+        public int GetCountOfCars()
+        {
+            return _db.Car.Count();   
+        }
+
         private readonly PolovniAutomobiliDbContext _db;
 
         public SqlCarData(PolovniAutomobiliDbContext polovniAutomobiliDbContext)

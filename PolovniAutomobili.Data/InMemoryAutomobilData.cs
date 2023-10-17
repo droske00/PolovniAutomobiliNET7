@@ -51,6 +51,11 @@ namespace PolovniAutomobili.Data
             return cars;
         }
 
+        public int GetCountOfCars()
+        {
+            throw new NotImplementedException();
+        }
+
         public Automobil Update(Automobil updateCar)
         {
             var car = _cars.FirstOrDefault(c => c.Id == updateCar.Id);

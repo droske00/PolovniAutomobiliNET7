@@ -18,5 +18,7 @@ namespace PolovniAutomobili.Data
         Automobil Add(Automobil newCar);
 
         Automobil Delete(int id);
+
+        int GetCountOfCars();
     }
 }
